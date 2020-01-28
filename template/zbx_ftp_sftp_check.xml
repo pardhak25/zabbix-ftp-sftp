@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-01-28T11:27:37Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+        <group>
+            <name>Templates/Applications</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template App FTP and SFTP</template>
+            <name>Template App FTP and SFTP</name>
+            <description>Monitoring of FTP and SFTP logins</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+                <group>
+                    <name>Templates/Applications</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>FTP</name>
+                </application>
+                <application>
+                    <name>SFTP</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>FTP Check</name>
+                    <type>EXTERNAL</type>
+                    <key>ftpCheck.pl[{$FTP_HOST},{$FTP_USER},{$FTP_PASSWORD}]</key>
+                    <delay>5m</delay>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>FTP</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(#1)}&lt;&gt;1</expression>
+                            <name>FTP Check {$FTP_HOST}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+                <item>
+                    <name>SFTP Check</name>
+                    <type>EXTERNAL</type>
+                    <key>sftpCheck.pl[{$SFTP_HOST},{$SFTP_USER},{$SFTP_PASSWORD}]</key>
+                    <delay>5m</delay>
+                    <history>7d</history>
+                    <applications>
+                        <application>
+                            <name>SFTP</name>
+                        </application>
+                    </applications>
+                    <triggers>
+                        <trigger>
+                            <expression>{last(#1)}&lt;&gt;1</expression>
+                            <name>SFTP Check {$SFTP_HOST}</name>
+                            <priority>HIGH</priority>
+                        </trigger>
+                    </triggers>
+                </item>
+            </items>
+            <macros>
+                <macro>
+                    <macro>{$FTP_HOST}</macro>
+                    <description>FTP Server Host</description>
+                </macro>
+                <macro>
+                    <macro>{$FTP_PASSWORD}</macro>
+                    <description>FTP Password</description>
+                </macro>
+                <macro>
+                    <macro>{$FTP_USER}</macro>
+                    <description>FTP User Name</description>
+                </macro>
+                <macro>
+                    <macro>{$SFTP_HOST}</macro>
+                    <description>SFTP Server Host</description>
+                </macro>
+                <macro>
+                    <macro>{$SFTP_PASSWORD}</macro>
+                    <description>SFTP Password</description>
+                </macro>
+                <macro>
+                    <macro>{$SFTP_USER}</macro>
+                    <description>SFTP User Name</description>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
