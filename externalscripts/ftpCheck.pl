@@ -2,10 +2,10 @@
 #title			:ftpCheck.pl
 #description	:This script will monitor remote ftpServer.
 #author			:Pardha Kaikala
-#date           :20200128
+#date			:20200128
 #version 		:1.0
 #usage			:./ftpCheck.pl <FTPSERVER> <ftp_user> <ftp_password>
-#notes			: Perl with Net::FTP is required
+#notes			:Perl with Net::FTP is required
 #==============================================================================
 
 use strict;
@@ -13,7 +13,7 @@ use warnings;
 use Net::FTP;
 
 
-my ($host, $user, $password, $cwd) = @ARGV;
+my ($host, $user, $password) = @ARGV;
 
 $host //= 'localhost';
 $user //= 'anonymous';

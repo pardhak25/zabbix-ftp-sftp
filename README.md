@@ -1,6 +1,6 @@
 # zabbix-ftp-sftp
 
-FTP and SFTP monitring
+Zabbix FTP and SFTP monitring Template
 
 # Metrics
 
